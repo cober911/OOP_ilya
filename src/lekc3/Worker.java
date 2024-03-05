@@ -24,7 +24,7 @@ public class Worker implements Iterator<String> {
 
     @Override
     public boolean hasNext() {
-        return index++ <4;
+        return index++ < 4;
     }
 
     @Override

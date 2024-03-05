@@ -3,7 +3,7 @@ package Seminar1;
 import java.util.ArrayList;
 
 public class DrinkVendingMachine extends VendingMachine {
-    private ArrayList<Drink> drinkList;
+    private final ArrayList<Drink> drinkList;
     public DrinkVendingMachine(String firstMachine) {
         super(firstMachine);
         this.drinkList = new ArrayList<Drink>();
