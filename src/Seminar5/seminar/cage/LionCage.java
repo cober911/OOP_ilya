@@ -2,11 +2,12 @@ package Seminar5.seminar.cage;
 
 import Seminar5.seminar.animals.Animal;
 import Seminar5.seminar.animals.Lion;
+import Seminar5.seminar.factory.LionsFactory;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class LionCage implements AnimalCage<Lion>{
+public class LionCage extends LionsFactory implements AnimalCage<Lion>{
     private int clean;
     private ArrayList<Lion> lions;
 
@@ -22,21 +23,26 @@ public class LionCage implements AnimalCage<Lion>{
     }
 
     @Override
-    public int addAnimal(Lion animal) {
-        return 0;
+    public ArrayList<Lion> createAnimal(int lionCount) {
+        ArrayList<Lion> lions = new ArrayList<>();
+        for (int i = 0; i < lionCount; i++) {
+            lions.add(new Lion((int)(Math.random()*13+1), (int)(Math.random()*150+1), 4, (int)(Math.random()*200+1)));
+            System.out.println(lions);
+        }
+        return lions;
     }
 
     @Override
-    public ArrayList<Lion> getAnimalCage(ArrayList<Lion> lions) {
+    public Lion getAnimalCage(ArrayList<Lion> lions) {
         Random rnd = new Random();
         for (int i = 0; i < 4; i++) {
             lions.add(new Lion(rnd.nextInt(13+1), 100, 4,343));
         }
         System.out.println(lions);
         int randomIndex = rnd.nextInt(lions.size());
-        Animal randomElement = lions.get(randomIndex);
+        Lion randomElement = lions.get(randomIndex);
         System.out.println("Случайный лев: " + randomElement); // Вытвскивает рандомного льва
-        return null;
+        return randomElement;
     }
 
 

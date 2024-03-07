@@ -12,7 +12,7 @@ public class SnakeCage implements AnimalCage<Snake> {
     }
 
     @Override
-    public ArrayList getAnimalCage(ArrayList<Snake> animals) {
+    public Snake getAnimalCage(ArrayList<Snake> snakes) {
         return null;
     }
 
@@ -25,4 +25,5 @@ public class SnakeCage implements AnimalCage<Snake> {
     public int cleanCage() {
         return 0;
     }
+
 }

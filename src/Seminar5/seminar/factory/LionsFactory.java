@@ -1,6 +1,7 @@
 package Seminar5.seminar.factory;
 
 import Seminar5.seminar.animals.Lion;
+import Seminar5.seminar.cage.LionCage;
 
 import java.util.ArrayList;
 

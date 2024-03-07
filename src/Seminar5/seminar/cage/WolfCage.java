@@ -24,7 +24,7 @@ public class WolfCage implements AnimalCage<Wolf> {
     }
 
     @Override
-    public ArrayList<Wolf> getAnimalCage(ArrayList<Wolf> wolfs) {
+    public Wolf getAnimalCage(ArrayList<Wolf> wolfs) {
         Random rnd = new Random();
         for (int i = 0; i < 4; i++) {
             wolfs.add(new Wolf(rnd.nextInt(13+1), 35, 4));
@@ -35,9 +35,8 @@ public class WolfCage implements AnimalCage<Wolf> {
         int randomIndex = rnd.nextInt(wolfs.size());
         Animal randomElement = wolfs.get(randomIndex);
         System.out.println("Случайный волк: " + randomElement); // Вытвскивает рандомного волка
-        return wolfs;
+        return null;
     }
-
 
     @Override
     public void feeding(ArrayList<Wolf> wolfs) {

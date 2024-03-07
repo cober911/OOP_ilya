@@ -5,8 +5,9 @@ import Seminar5.seminar.animals.Animal;
 import java.util.*;
 
 public interface AnimalCage<T extends Animal> {
-    int addAnimal(T animal);
-    ArrayList<T> getAnimalCage(ArrayList<T> animals);
+    ArrayList<T> createAnimal(int animal);
+    T getAnimalCage(ArrayList<T> animals); //Вытаскивает рандомного животного из клетки
+
     void feeding(ArrayList<T> animals); //Реализовать механизм кормления
 
     int cleanCage(); //Реализовать механизм очистки клетки
@@ -19,5 +20,4 @@ public interface AnimalCage<T extends Animal> {
         });
         return animalList;
     }
-
 }

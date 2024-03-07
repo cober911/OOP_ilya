@@ -7,6 +7,10 @@ import Seminar5.seminar.animals.Wolf;
 import Seminar5.seminar.cage.LionCage;
 import Seminar5.seminar.cage.WolfCage;
 import Seminar5.seminar.factory.LionsFactory;
+import Seminar5.seminar.terminal.CommandParser;
+import Seminar5.seminar.terminal.CreateLionExecutable;
+import Seminar5.seminar.terminal.TerminalReader;
+import Seminar5.seminar.zoo.Zoo;
 
 
 import java.util.ArrayList;
@@ -22,11 +26,17 @@ public class Main {
 //        System.out.println("---------------------");
 //        wc.feeding(wolfs);
 //        wc.cleanCage();
-        LionCage lionCage = new LionCage();
-        lionCage.setLions(LionsFactory.createLions(4));
-        System.out.println(lionCage.getLions());
-        AnimalUtils.sortAnimals(lionCage.getLions());
-        System.out.println("---------------------");
-        System.out.println(lionCage.getLions());
+//        -------------sem4----------------------
+//        LionCage lionCage = new LionCage();
+//        lionCage.setLions(LionsFactory.createLions(4));
+//        System.out.println(lionCage.getLions());
+//        AnimalUtils.sortAnimals(lionCage.getLions());
+//        System.out.println("---------------------");
+//        System.out.println(lionCage.getLions());
+//        -------------sem5----------------------
+
+
+
+
     }
 }
