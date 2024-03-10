@@ -1,7 +1,7 @@
-package Seminar1.Machines;
+package Seminar1.Alex.Machines;
 
-import Seminar1.Product.HotDrink;
-import Seminar1.Product.Product;
+import Seminar1.Alex.Product.HotDrink;
+import Seminar1.Alex.Product.Product;
 
 import java.util.ArrayList;
 

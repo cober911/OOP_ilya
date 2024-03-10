@@ -1,45 +1,50 @@
 package Seminar5.seminar.animals;
 
+
 public abstract class Animal {
     protected int age;
     protected int weight;
-    protected int limbs;
+    protected int countLimbs;
 
-    public Animal(int age, int weight, int limbs) {
+    public Animal(int age, int weight, int countLimbs) {
         this.age = age;
         this.weight = weight;
-        this.limbs = limbs;
+        this.countLimbs = countLimbs;
     }
-    public Animal(){
 
+    public void feed(int foodWeight) {
+        if (weight + foodWeight > getMaxWeight()) {
+            weight = getMaxWeight();
+        } else {
+            weight = weight + foodWeight;
+        }
     }
 
     public int getAge() {
         return age;
     }
 
-    public abstract int getMaxWeight();
-
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setAge(int age) {
+        this.age = age;
     }
-
-    public abstract String getType();
 
     public int getWeight() {
         return weight;
     }
 
-    public void feed(int foodWeight) {
-        if (foodWeight + this.weight <= getMaxWeight()) {
-            this.weight += foodWeight;
-            System.out.print(foodWeight);
-        } else System.out.println("Вес максимальный");
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
-
-    @Override
-    public String toString() {
-        return "Animal" + "age=" + age + ", weight=" + weight + ", limbs=" + limbs + "] \n";
+    public int getCountLimbs() {
+        return countLimbs;
     }
+
+    public void setCountLimbs(int countLimbs) {
+        this.countLimbs = countLimbs;
+    }
+
+    public abstract String getType();
+
+    public abstract int getMaxWeight();
 }

@@ -2,74 +2,102 @@ package Seminar5.seminar.cage;
 
 import Seminar5.seminar.animals.Animal;
 import Seminar5.seminar.animals.Lion;
-import Seminar5.seminar.factory.LionsFactory;
+import Seminar5.seminar.animals.LionComparator;
+import Seminar5.seminar.cage.AnimalCage;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
-public class LionCage extends LionsFactory implements AnimalCage<Lion>{
-    private int clean;
-    private ArrayList<Lion> lions;
+public class LionCage implements AnimalCage<Lion> {
+    private int countLions;
+    private int garbageVolume;
+    private List<Lion> lions;
+    protected static final int MAX_GARBAGE = 70;
 
-    public LionCage(){
-        lions = new ArrayList<>();
-    }
-    public ArrayList<Lion> getLions(){
-        return this.lions;
-    }
 
-    public void setLions(ArrayList<Lion> lions) {
+    public LionCage(List<Lion> lions) {
         this.lions = lions;
+        countLions = lions.size();
+        garbageVolume = this.countLions * 3;
+    }
+
+
+    @Override
+    public String toString() {
+        return " " + lions +
+                " ";
     }
 
     @Override
-    public ArrayList<Lion> createAnimal(int lionCount) {
-        ArrayList<Lion> lions = new ArrayList<>();
-        for (int i = 0; i < lionCount; i++) {
-            lions.add(new Lion((int)(Math.random()*13+1), (int)(Math.random()*150+1), 4, (int)(Math.random()*200+1)));
-            System.out.println(lions);
+    public void addAnimalToCage(Lion lion) {
+        lions.add((Lion) lion);
+        countLions++;
+        garbageVolume += 3;
+    }
+
+    @Override
+    public void giveFoodToCage(int weightOfFood) {
+        garbageVolume += weightOfFood;
+    }
+
+    @Override
+    public void cleanCage() {
+        if (garbageVolume >= MAX_GARBAGE) {
+            garbageVolume = 0;
+            System.out.println("Клетка почищена");
+        } else {
+            System.out.println("Пока еще чисто");
         }
+    }
+
+    public List<Lion> getLions() {
+        lions = this.lions;
         return lions;
     }
 
     @Override
-    public Lion getAnimalCage(ArrayList<Lion> lions) {
-        Random rnd = new Random();
-        for (int i = 0; i < 4; i++) {
-            lions.add(new Lion(rnd.nextInt(13+1), 100, 4,343));
-        }
-        System.out.println(lions);
-        int randomIndex = rnd.nextInt(lions.size());
-        Lion randomElement = lions.get(randomIndex);
-        System.out.println("Случайный лев: " + randomElement); // Вытвскивает рандомного льва
-        return randomElement;
-    }
-
-
-    @Override
-    public void feeding(ArrayList<Lion> lions) {
-        Random rnd = new Random();
-        for (Animal animal: lions) {
-            var value = rnd.nextInt(300) + animal.getWeight();
-            if(value < animal.getMaxWeight() ) {
-                animal.setWeight(value);
-                System.out.println(animal + "Покормлен");
-            }
-            else {
-                System.out.println(animal + "У льва в жопе перегруз. Макс. вес: 300, а он " + value);
-            }
+    public Lion getAnimalFromCage() {
+        if (this.lions == null) {
+            System.out.println("Клетка пуста");
+            return null;
+        } else {
+            Random random = new Random();
+            int randomLionToGet = (int) (Math.random() * (this.lions.size()));
+            Lion randomLion = this.lions.get(randomLionToGet);
+            this.lions.remove(randomLion);
+            System.out.println(randomLion + "удален из клетки");
+            return randomLion;
         }
     }
 
-    @Override
-    public int cleanCage() {
-        System.out.println("Клетка очищена");
-        return 0;
+    public void sortLions() {
+        Collections.sort(lions);
+    }
+
+    public void sortByLionMane() {
+        Collections.sort(lions, new LionComparator());
     }
 
     @Override
-    public ArrayList<Lion> sortByAge(ArrayList<Lion> animalList) {
-        return AnimalCage.super.sortByAge(animalList);
+    public Lion getChosenAnimal(int lionMane) {
+        Lion findLionByMane;
+        int tempMane=-1;
+            for (int i = 0; i < this.lions.size(); i++) {
+                if (this.lions.get(i).getManeVolume() == lionMane) {
+                    tempMane = i;
+                    break;
+                }
+            }
+        if (tempMane==-1) {
+            System.out.println("Льва с такой гривой нет в клетке");
+            return null;
+        }  else {
+            findLionByMane=lions.get(tempMane);
+            lions.remove(tempMane);
+            System.out.println("Из клетки со львами удален лев с гривой"+" "+lionMane+"\n");
+            return findLionByMane;
+        }
     }
-
 }

@@ -2,22 +2,17 @@ package Seminar5.seminar.cage;
 
 import Seminar5.seminar.animals.Animal;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public interface AnimalCage<T extends Animal> {
-    ArrayList<T> createAnimal(int animal);
-    T getAnimalCage(ArrayList<T> animals); //Вытаскивает рандомного животного из клетки
 
-    void feeding(ArrayList<T> animals); //Реализовать механизм кормления
+    void addAnimalToCage(T animal);
 
-    int cleanCage(); //Реализовать механизм очистки клетки
-    default ArrayList<T> sortByAge(ArrayList<T> animalList){ // Сортировка животных по возрасту
-        animalList.sort(new Comparator<T>() {
-            @Override
-            public int compare(T animal1, T animal2) {
-                return Integer.compare(animal1.getAge(), animal2.getAge());
-            }
-        });
-        return animalList;
-    }
+    void giveFoodToCage(int weightOfFood);
+
+    void cleanCage();
+
+    T getAnimalFromCage();
+    T getChosenAnimal(int animalParameter);
+
 }

@@ -1,9 +1,9 @@
-package Seminar1.Machines;
+package Seminar1.Alex.Machines;
 
 
-import Seminar1.Product.Drink;
+import Seminar1.Alex.Product.Drink;
 
-public class DrinkMachine<T extends Drink> extends WendingMachine {
+public class DrinkMachine<T extends Drink> extends WendingMachine<T> {
     public DrinkMachine(String drinkMachine) {
         super(drinkMachine);
     }

@@ -1,4 +1,4 @@
-package Seminar1.Product;
+package Seminar1.Alex.Product;
 
 public class Drink extends Product {
     private int volume;

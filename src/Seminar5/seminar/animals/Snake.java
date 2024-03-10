@@ -1,26 +1,37 @@
 package Seminar5.seminar.animals;
 
-public class Snake extends Animal {
-    private int length;
-    private static final int MAX_WEIGHT = 10;
-    private static final String TYPE = "Snake";
+import Seminar5.seminar.terminal.command.Command;
 
-    public Snake(int age, int weight, int limbs, int length) {
-        super(age, weight, limbs);
-        this.length = length;
+public class Snake extends Animal implements Comparable<Snake> {
+    private int bodyLength;
+    protected static final int MAX_WEIGHTS = 10;
+    protected static final String TYPE = "Snake";
+
+    public Snake(int age, int weight, int countLimbs, int bodyLength) {
+        super(age, weight, countLimbs);
+        this.bodyLength = bodyLength;
+    }
+    public Snake(Command command){
+        super(command.getCommandParameters().get(3), command.getCommandParameters().get(4),
+                command.getCommandParameters().get(5));
+        this.bodyLength = command.getCommandParameters().get(2);
     }
 
-    public int getLength() {
-        return length;
+    public int getBodyLength() {
+        return bodyLength;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setBodyLength(int bodyLength) {
+        this.bodyLength = bodyLength;
     }
 
     @Override
-    public int getMaxWeight() {
-        return MAX_WEIGHT;
+    public String toString() {
+        return "Snake:" +
+                "bodyLength=" + bodyLength +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", countLimbs=" + countLimbs;
     }
 
     @Override
@@ -28,4 +39,16 @@ public class Snake extends Animal {
         return TYPE;
     }
 
+    @Override
+    public int getMaxWeight() {
+        return MAX_WEIGHTS;
+    }
+
+
+    @Override
+    public int compareTo(Snake o) {
+        if (this.bodyLength > o.bodyLength) return 1;
+        else if (this.bodyLength < o.bodyLength) return -1;
+        return 0;
+    }
 }

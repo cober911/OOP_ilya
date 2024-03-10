@@ -1,20 +1,18 @@
-package Seminar1.UsingVendingMachines;
+package Seminar1.Alex.UsingVendingMachines;
 
-import Seminar1.Machines.DrinkMachine;
-import Seminar1.Machines.HotDrinksWendingMachine;
-import Seminar1.Machines.WendingMachine;
-import Seminar1.Product.Drink;
-import Seminar1.Product.HotDrink;
-import Seminar1.Product.Product;
+import Seminar1.Alex.Machines.DrinkMachine;
+import Seminar1.Alex.Machines.HotDrinksWendingMachine;
+import Seminar1.Alex.Machines.WendingMachine;
+import Seminar1.Alex.Product.Drink;
+import Seminar1.Alex.Product.HotDrink;
+import Seminar1.Alex.Product.Product;
 
 
 public class Main {
     public static void main(String[] args) {
         WendingMachine wendMachine = new WendingMachine("Father Vending machine");
-        Product nuts = new Product("орешки", 100);
-        Product cola = new Product("газировка", 150);
-        wendMachine.addProduct(nuts);
-        wendMachine.addProduct(cola);
+        wendMachine.addProduct(new Product("орешки", 100));
+        wendMachine.addProduct(new Product("газировка", 150));
 
 //        String newStr = wendMachine.returnProduct("орешки").getName();
 //        Integer newPrice = wendMachine.returnProduct("орешки").getPrice();

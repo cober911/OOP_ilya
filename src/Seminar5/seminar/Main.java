@@ -1,42 +1,50 @@
 package Seminar5.seminar;
 
-import Seminar5.seminar.animalUtils.AnimalUtils;
-import Seminar5.seminar.animals.Animal;
 import Seminar5.seminar.animals.Lion;
-import Seminar5.seminar.animals.Wolf;
+import Seminar5.seminar.animals.Snake;
 import Seminar5.seminar.cage.LionCage;
+import Seminar5.seminar.animals.Wolf;
+import Seminar5.seminar.cage.SnakeCage;
 import Seminar5.seminar.cage.WolfCage;
-import Seminar5.seminar.factory.LionsFactory;
-import Seminar5.seminar.terminal.CommandParser;
-import Seminar5.seminar.terminal.CreateLionExecutable;
+import Seminar5.seminar.terminal.command.ParseCommand;
 import Seminar5.seminar.terminal.TerminalReader;
 import Seminar5.seminar.zoo.Zoo;
 
 
-import java.util.ArrayList;
+import java.util.List;
+
+
+import static Seminar5.seminar.terminal.factory.LionsFactory.lionsCollection;
+import static Seminar5.seminar.terminal.factory.SnakesFactory.snakesCollection;
+import static Seminar5.seminar.terminal.factory.WolvesFactory.wolvesCollection;
 
 public class Main {
     public static void main(String[] args) {
+        List<Lion> lions = lionsCollection(2);
+        LionCage lionsInCage = new LionCage(lions);
 
-//        LionCage.setLions(LionsFactory.createLions(2));
-//        WolfCage.setWolfs(WolfsFactory.createWolfs(2));
+        lionsInCage.sortLions();
+        System.out.println(lionsInCage);
+        lionsInCage.getAnimalFromCage();
+//        lionsInCage.sortByLionMane();
 
-//        WolfCage wc = new WolfCage();
-//        ArrayList<Wolf> wolfs = wc.getAnimalCage(wc.getWolfs());
-//        System.out.println("---------------------");
-//        wc.feeding(wolfs);
-//        wc.cleanCage();
-//        -------------sem4----------------------
-//        LionCage lionCage = new LionCage();
-//        lionCage.setLions(LionsFactory.createLions(4));
-//        System.out.println(lionCage.getLions());
-//        AnimalUtils.sortAnimals(lionCage.getLions());
-//        System.out.println("---------------------");
-//        System.out.println(lionCage.getLions());
-//        -------------sem5----------------------
+        List<Snake> snakes = snakesCollection(2);
+        SnakeCage snakesInCage = new SnakeCage(snakes);
+        snakesInCage.sortSnakes();
+        System.out.println(snakesInCage);
 
 
+        List<Wolf> wolves = wolvesCollection(2);
+        WolfCage wolvesInCage = new WolfCage(wolves);
+        wolvesInCage.sortWolves();
+        System.out.println(wolvesInCage);
+        wolvesInCage.getAnimalFromCage();
+        wolvesInCage.sortByAgeAndWeight();
+//        sortAnimalByAge(wolves);
 
+        Zoo zoo = new Zoo(lionsInCage, wolvesInCage, snakesInCage);
+        TerminalReader terminalReader = TerminalReader.newTerminalReader(new ParseCommand(),zoo);
+        terminalReader.endless();
 
     }
 }
